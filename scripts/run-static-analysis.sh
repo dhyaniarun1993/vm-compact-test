@@ -4,17 +4,18 @@ set -e  # Exit immediately if a command exits with a non-zero status
 
 # Usage function
 usage() {
-    echo "Usage: $0 <vm-profile>"
+    echo "Usage: $0 <vm-profile> <baseline-report>"
     echo "Valid profiles: cannon-singlethreaded-32, cannon-multithreaded-64"
     exit 1
 }
 
 # Validate input
-if [[ $# -ne 1 ]]; then
+if [[ $# -ne 2 ]]; then
     usage
 fi
 
 VM_PROFILE=$1
+BASELINE_REPORT=$2
 
 if [[ "$VM_PROFILE" != "cannon-singlethreaded-32" && "$VM_PROFILE" != "cannon-multithreaded-64" ]]; then
     echo "Error: Invalid vm-profile '$VM_PROFILE'"
@@ -96,5 +97,21 @@ else
 fi
 
 # Run the analyzer
-echo "Analyzing op-program-client with VM profile: $VM_PROFILE..."
-"$ANALYZER_BIN" analyze --with-trace=true --format=json --vm-profile "$VM_PROFILE" ./main.go
+echo "Running analysis with VM profile: $VM_PROFILE using baseline report: $BASELINE_FILE..."
+OUTPUT_FILE=$(mktemp)
+
+"$ANALYZER_BIN" analyze --with-trace=true --format=json --vm-profile "$VM_PROFILE" --baseline-report "$BASELINE_REPORT" ./main.go > "$OUTPUT_FILE"
+
+# Check if JSON output contains any issues
+ISSUE_COUNT=$(jq 'length' "$OUTPUT_FILE")
+
+if [ "$ISSUE_COUNT" -gt 0 ]; then
+    echo "❌ Analysis found $ISSUE_COUNT issues!"
+    cat "$OUTPUT_FILE"
+    rm -f "$OUTPUT_FILE"
+    exit 1
+else
+    echo "✅ No issues found."
+    rm -f "$OUTPUT_FILE"
+    exit 0
+fi
