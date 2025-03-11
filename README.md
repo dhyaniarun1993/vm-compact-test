@@ -1,0 +1,1 @@
+# vm-compact-test
