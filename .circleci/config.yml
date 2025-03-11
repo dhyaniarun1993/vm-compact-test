@@ -1,0 +1,20 @@
+version: 2.1
+
+executors:
+  go-executor:
+    docker:
+      - image: cimg/go:1.21
+
+jobs:
+  analyze:
+    executor: go-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Analyzer
+          command: make analyze-program
+
+workflows:
+  analyze-workflow:
+    jobs:
+      - analyze
