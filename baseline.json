@@ -7083,5 +7083,6 @@
     "impact": "This syscall is present in the program, but its execution depends on the actual runtime behavior. \n             If the execution path does not reach this syscall, it may not affect execution.",
     "reference": "https://github.com/ChainSafe/vm-compat?tab=readme-ov-file#how-it-works",
     "hash": "feedff66b283e378f450e5e325685a163472c752b29c760bce741978505572b6"
-  }
+  },
+  {"callStack":{"file":"temp_assembly_output","line":139798,"function":"runtime.rtsigprocmask","absPath":"/tmp/temp_assembly_output","callStack":{"file":"temp_assembly_output","line":104623,"function":"runtime.sigblock","absPath":"/tmp/temp_assembly_output","callStack":{"file":"temp_assembly_output","line":79621,"function":"runtime.mexit","absPath":"/tmp/temp_assembly_output","callStack":{"file":"temp_assembly_output","line":79470,"function":"runtime.mstart0","absPath":"/tmp/temp_assembly_output","callStack":{"file":"temp_assembly_output","line":136676,"function":"runtime.mstart","absPath":"/tmp/temp_assembly_output"}}}}},"message":"Potential NOOP Syscall Detected: 4195","severity":"WARNING","impact":"This syscall is present in the program, but its execution depends on the actual runtime behavior. \n             If the execution path does not reach this syscall, it may not affect execution.","reference":"https://github.com/ChainSafe/vm-compat?tab=readme-ov-file#how-it-works","hash":"ff33d88e70b1235ac46a9c873f4a4998e8a054e00b9f16d2e8baf3880fd33f06"}
 ]
