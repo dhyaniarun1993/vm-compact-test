@@ -12,6 +12,12 @@ jobs:
       - checkout
 
       - run:
+          name: Install Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y llvm curl
+
+      - run:
           name: Run Analyzer
           command: make analyze-program
 
