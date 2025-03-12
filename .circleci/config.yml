@@ -12,6 +12,18 @@ jobs:
       - checkout
 
       - run:
+          name: Install Mise
+          command: |
+            curl -fsSL https://mise.jdx.dev/install.sh | sh
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
+            source $BASH_ENV
+
+      - run:
+          name: Install Dependencies via Mise
+          command: |
+            mise install llvm-objdump
+
+      - run:
           name: Run Analyzer
           command: make analyze-program
 
