@@ -9,13 +9,12 @@ jobs:
   analyze:
     executor: go-executor
     steps:
-      - checkout
+      - utils/checkout-with-mise  # This handles checkout and mise dependencies
 
       - run:
-          name: Install Dependencies
+          name: Install LLVM-Objdump via Mise
           command: |
-            sudo apt-get update
-            sudo apt-get install -y llvm curl
+            mise install llvm-objdump
 
       - run:
           name: Run Analyzer
