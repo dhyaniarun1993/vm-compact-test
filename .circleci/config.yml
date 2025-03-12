@@ -12,6 +12,12 @@ jobs:
       - checkout
 
       - run:
+          name: Install Required Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y ninja-build cmake build-essential
+
+      - run:
           name: Install Mise
           command: |
             curl -fsSL https://mise.jdx.dev/install.sh | sh
