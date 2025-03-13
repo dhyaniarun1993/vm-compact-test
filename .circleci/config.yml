@@ -12,22 +12,10 @@ jobs:
       - checkout
 
       - run:
-          name: Install Required Dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y ninja-build cmake build-essential
-
-      - run:
-          name: Install Mise
-          command: |
-            curl -fsSL https://mise.jdx.dev/install.sh | sh
-            echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
-            source $BASH_ENV
-
-      - run:
           name: Install Dependencies via Mise
           command: |
-            mise install llvm-objdump
+            sudo apt-get update
+            sudo apt-get install -y llvm curl
 
       - run:
           name: Run Analyzer
