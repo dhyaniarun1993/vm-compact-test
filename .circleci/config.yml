@@ -4,6 +4,7 @@ executors:
   go-executor:
     docker:
       - image: cimg/go:1.21
+    resource_class: large
 
 jobs:
   analyze:
