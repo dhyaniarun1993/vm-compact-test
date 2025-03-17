@@ -22,13 +22,16 @@ jobs:
            name: Install Mise
            command: |
              curl -fsSL https://mise.jdx.dev/install.sh | sh
+             echo $BASH_ENV
              echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
+             echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> $BASH_ENV'
              source $BASH_ENV
  
       - run:
            name: Install Dependencies via Mise
            command: |
-             CC=clang CXX=clang++ mise install llvm-objdump
+             CC=clang CXX=clang++ mise install llvm-objdump@20.1.0
+             mise use -g llvm-objdump@20.1.0
 
       - run:
           name: Run Analyzer
