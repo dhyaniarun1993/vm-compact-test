@@ -24,7 +24,7 @@ jobs:
              curl -fsSL https://mise.jdx.dev/install.sh | sh
              echo $BASH_ENV
              echo 'export PATH="$HOME/.local/bin:$PATH"' >> $BASH_ENV
-             echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> $BASH_ENV'
+             echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> $BASH_ENV
              source $BASH_ENV
  
       - run:
