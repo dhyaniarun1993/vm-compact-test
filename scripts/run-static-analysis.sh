@@ -26,7 +26,7 @@ fi
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m)
 BIN_DIR="bin"
-ANALYZER_BIN="${BIN_DIR}/analyzer"
+ANALYZER_BIN="analyzer"
 
 # Normalize architecture naming
 case "$ARCH" in
